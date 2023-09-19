@@ -11,7 +11,7 @@ void reverse(char s[])
         s[i]=s[m-i-1];
         s[m-i-1]=с;
     }
-    printf("%s", s);
+    printf("%s\n", s);
 } 
 
 int main()
