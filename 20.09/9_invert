@@ -3,7 +3,7 @@
 
 int main()
 {
-    unsigned x;
+    int x;
     scanf("%d", &x);
     x=x^224;
     printf("%u\n", x);
