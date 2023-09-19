@@ -1,2 +1,2 @@
 # Practice214
-Tasks for 2 year VMiK
+Tasks for 2 course of VMiK
