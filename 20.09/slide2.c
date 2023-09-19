@@ -1,32 +1,19 @@
 #include <stdio.h>
 #include <string.h>
 
-void cdelete(char s[], char c)
+void reverse(char s[])
 {
-    int k=0;
-    for (int i=0; i<strlen(s); i++)
-    {
-        if (s[i]==c)
-            k+=1;
-    }
-    int m=strlen(s)-k;
+    int m=strlen(s);
     char l[m];
-    int j=0;
-    for (int i=0; i<strlen(s); i++)
+    for (int i=m-1; i>=0; i--)
     {
-        if (s[i]!=c)
-        {
-            l[j]=s[i];
-            j++;
-        }
+        l[m-i-1]=s[i];
     }
-    s=l;
-    printf("%s\n", s);
+    printf("%s\n", l);
 } 
 
 int main()
 {
-    char s[]="ddddaa";
-    char c='d';
-    cdelete(s,c);
+    char s[]="dfghjkl";
+    reverse(s);
 }
