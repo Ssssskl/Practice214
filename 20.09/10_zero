@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main()
+{
+    int z;
+    scanf("%d", &z);
+    z=z&31;
+    z=z|7;
+    printf("%d\n", z);
+}
