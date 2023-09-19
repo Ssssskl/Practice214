@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+
+int main()
+{
+    int x;
+    scanf("%d", &x);
+    x=x^224;
+    printf("%u\n", x);
+}
