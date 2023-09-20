@@ -3,19 +3,19 @@
 
 void reverse(char *s)
 {
-    int m=strlen(s);
     char c;
-    for (int i=0; i<m/2; i++)
+    char *m=s+strlen(s)-1;
+    for (*m, *s; m>s; m--, s++)
     {
-        c=s[i];
-        s[i]=s[m-i-1];
-        s[m-i-1]=c;
+        c=*s;
+        *s=*m;
+        *m=c;
     }
-    printf("%s\n", s);
 } 
 
 int main()
 {
     char s[]="asdfg";
     reverse(s);
+    printf("%s\n", s);
 }
