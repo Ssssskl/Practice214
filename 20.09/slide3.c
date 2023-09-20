@@ -1,32 +1,29 @@
 #include <stdio.h>
 #include <string.h>
 
-void cdelete(char s[], char c)
+void copy (char src[], char dst[])
 {
-    int k=0;
-    for (int i=0; i<strlen(s); i++)
+    while (*dst++=*src++);
+}
+
+
+void cdelete(char *s, char c)
+{
+    while (*s!=0)
     {
-        if (s[i]==c)
-            k+=1;
-    }
-    int m=strlen(s)-k;
-    char l[m];
-    int j=0;
-    for (int i=0; i<strlen(s); i++)
-    {
-        if (s[i]!=c)
+        if (*s==c)
         {
-            l[j]=s[i];
-            j++;
+            copy(s+1,s);
+            continue;
         }
-    }
-    s=l;
-    printf("%s\n", s);
+        s++;     
+    }  
 } 
 
 int main()
 {
-    char s[]="ddddaa";
+    char s[]="dadadadada";
     char c='d';
     cdelete(s,c);
+    printf("%s\n", s);
 }
