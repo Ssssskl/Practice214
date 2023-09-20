@@ -1,11 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 
-void copy (char src[], char dst[])
+char * copy (char *src, char *dst)
 {
-    while (*dst++=*src++);
+    char *ret=dst;
+    while (*src)
+    {
+        *dst=*src;
+        src++;
+        dst++;
+    }
+    *dst=0;
+    return ret;
 }
-
 
 void cdelete(char *s, char c)
 {
