@@ -14,19 +14,21 @@ struct list
     struct list *next;
 };
 
+
 void toend (struct list *next, int elem)
 {
-    struct list *m;
+    struct list *m, *t;
     m = next;
     while (m -> next) 
     {
         m = m -> next;
     }
-    list *t = (struct list*)malloc(sizeof(struct list));
+    t = (struct list*)malloc(sizeof(struct list));
     t -> value = elem;
     t -> next = NULL;
     m -> next = t;
 }
+
 
 void del_1 (struct list *next, int elem)
 {
