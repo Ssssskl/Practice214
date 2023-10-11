@@ -69,7 +69,7 @@ long double **sum_two_matrix (long double **matrix_1, unsigned long long *line_1
         printf("ERROR! That's not a matrix!\n");
         return NULL;
     }
-    if (*line_1 != *line_2 || *column_1 != *column_2)
+    if (*line_1 != *line_2 && *column_1 != *column_2)
     {
         printf("ERROR! The matrices have different sizes\n");
         return NULL;
