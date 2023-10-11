@@ -170,7 +170,7 @@ long double matrix_det (long double **matrix, unsigned long long line, unsigned 
                 }
                 if (j > k)
                 {
-                    new_matrix[i][j-1]=matrix[i + 1][j];
+                    new_matrix[i][j - 1]=matrix[i + 1][j];
                 }
             }
         }
