@@ -8,19 +8,29 @@ long double **read_matrix (unsigned long long *line, unsigned long long *column)
     long double **matrix;
     long long n;
     printf("%s\n", "Enter a number of lines:");
-    scanf("%lld", &n);
-    while (n <= 0)
+    if (scanf("%lld", &n) == 0)
     {
-        printf("%s\n", "Ooops, incorrect data! Please enter correct number of lines: ");
-        scanf("%lld", &n);
+        printf("%s\n", "durachok?");
+        exit(EXIT_FAILURE);
+    }
+    scanf("%lld", &n);
+    if (n <= 0)
+    {
+        printf("%s\n", "Ooops, incorrect data!");
+        return NULL;
     }
     *line = n;
     printf("%s\n", "Enter a number of columns:");
-    scanf("%lld", &n);
-     while (n <= 0)
+    if (scanf("%lld", &n) == 0)
     {
-        printf("%s\n", "Ooops, incorrect data! Please enter correct number of columns: ");
-        scanf("%lld", &n);
+        printf("%s\n", "durachok?");
+        exit(EXIT_FAILURE);
+    }
+    scanf("%lld", &n);
+    if (n <= 0)
+    {
+        printf("%s\n", "Ooops, incorrect data!");
+        return NULL;
     }
     *column = n;
     matrix = malloc(*line*sizeof(long double*));

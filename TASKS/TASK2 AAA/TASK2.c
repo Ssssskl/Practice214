@@ -48,5 +48,6 @@ int main()
     //Освобождение памяти из-под двух матриц
     matrix_free(matrix_1, line_1);
     matrix_free(matrix_2, line_2);
+    
     return 0;
 }
