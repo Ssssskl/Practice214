@@ -3,34 +3,45 @@
 #include "matrixfunctions.h"
 #include <math.h>
 
+
+void matrix_free(long double **matrix, unsigned long long line)
+{
+    for (unsigned long long i = 0; i < line; i++)
+    {
+        free(matrix[i]);
+    }
+    free(matrix);
+}
+
 long double **read_matrix (unsigned long long *line, unsigned long long *column)
 {
     long double **matrix;
     long long n;
-    printf("%s\n", "Enter a number of lines:");
-    if (scanf("%lld", &n) == 0)
+    int OSH;
+    printf("%s\n", "Enter a number of lines and columns:");
+    OSH = scanf("%lld", &n);
+    if (OSH == 0)
     {
         printf("%s\n", "durachok?");
         exit(EXIT_FAILURE);
     }
-    scanf("%lld", &n);
     if (n <= 0)
     {
-        printf("%s\n", "Ooops, incorrect data!");
-        return NULL;
+        printf("%s\n", "Ooops, incorrect data! Try again ");
+        scanf("%lld", &n);
     }
     *line = n;
     printf("%s\n", "Enter a number of columns:");
-    if (scanf("%lld", &n) == 0)
+    OSH = scanf("%lld", &n);
+    if (OSH == 0)
     {
         printf("%s\n", "durachok?");
         exit(EXIT_FAILURE);
     }
-    scanf("%lld", &n);
     if (n <= 0)
     {
-        printf("%s\n", "Ooops, incorrect data!");
-        return NULL;
+        printf("%s\n", "Ooops, incorrect data! Try again ");
+        scanf("%lld", &n);
     }
     *column = n;
     matrix = malloc(*line*sizeof(long double*));
@@ -41,7 +52,13 @@ long double **read_matrix (unsigned long long *line, unsigned long long *column)
         printf("%lld\n", i + 1);
         for (unsigned long long j = 0; j < *column; j++)
         {
-            scanf("%Lf", &matrix[i][j]);
+            OSH = scanf("%Lf", &matrix[i][j]);
+            if (OSH == 0)
+            {
+                printf("%s\n", "durachok?");
+                matrix_free(matrix, n);
+                exit(EXIT_FAILURE);
+            }
         }
     }
     return matrix;
@@ -63,14 +80,7 @@ void out_matrix(long double **matrix, unsigned long long line, unsigned long lon
     }
 }
 
-void matrix_free(long double **matrix, unsigned long long line)
-{
-    for (unsigned long long i = 0; i < line; i++)
-    {
-        free(matrix[i]);
-    }
-    free(matrix);
-}
+
 
 
 long double **sum_two_matrix (long double **matrix_1, unsigned long long *line_1, unsigned long long *column_1, long double **matrix_2, unsigned long long *line_2, unsigned long long *column_2)

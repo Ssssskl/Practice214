@@ -16,15 +16,15 @@ int main()
     out_matrix(matrix_1, line_1, column_1);
     matrix_2 = read_matrix(&line_2, &column_2);
     out_matrix(matrix_2, line_2, column_2);
-    
-
+            
+            
     //Умножение на константу
     long double **matrixMULonC;
     matrixMULonC = mul_on_num (matrix_1, &line_1, &column_1, 10);
     printf("multiplying on number, wait...\n");
     out_matrix(matrixMULonC, line_1, column_1);
     matrix_free(matrixMULonC, line_1);
-        
+    
     //Сложение двух матриц
     long double **matrixSUM;
     printf("taking a sum of two matrices, wait...\n");
@@ -43,7 +43,6 @@ int main()
     long double matrixDET;
     matrixDET = matrix_det (matrix_1, line_1, column_1);
     printf("Determinant is: %Lf\n", matrixDET);
-
 
     //Освобождение памяти из-под двух матриц
     matrix_free(matrix_1, line_1);
