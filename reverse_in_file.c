@@ -27,7 +27,7 @@ void print_Stack_in_file(stack *st, FILE *f)
 
 int main(int argc, char *argv[])
 {
-    FILE *f = fopen("./file1.txt", "r");
+    FILE *f = fopen("./file.txt", "r");
     stack *st =NULL;
     int n;
     while(fscanf(f, "%d", &n) != EOF)
