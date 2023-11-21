@@ -237,7 +237,7 @@ int main(int argc, char ** argv)
             free(massiv);
             continue;
         }
-        if (!flag_eof)
+        if (!flag_eof && (*massiv != NULL))
         {
             //massiv_out(massiv);
             if (is_cd(massiv))
@@ -254,7 +254,7 @@ int main(int argc, char ** argv)
             {
                 execvp(massiv[0], massiv);
                 perror("Error");
-                exit(2);
+                exit(2);   
             }
             wait(0);
         } 
