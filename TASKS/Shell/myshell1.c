@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
 
 
 #define COLOR_GREEN "\e[1;32m"
@@ -168,14 +171,32 @@ void free_massiv(char** massiv)
     }
 }
 
-void massiv_out(char **massiv)
+// void massiv_out(char **massiv)
+// {
+//     char** newmassiv = massiv;
+//     while (*newmassiv != NULL) 
+//     {
+//         printf("%s\n",*newmassiv);
+//         newmassiv++;
+//     }
+// }
+
+int is_cd(char **massiv) 
 {
-    char** newmassiv = massiv;
-    while (*newmassiv != NULL) 
+    if (!strcmp(massiv[0], "cd")) 
     {
-        printf("%s\n",*newmassiv);
-        newmassiv++;
+        if (massiv[1] == NULL) 
+        {
+            chdir(getenv("HOME"));
+        } 
+        else if ((massiv[2] != NULL) || chdir(massiv[1])) 
+        {
+            printf("Error in changing directory\n");
+            return -1;
+        }
+        return 1;
     }
+    return 0;
 }
 
 int main(int argc, char ** argv)
@@ -186,7 +207,6 @@ int main(int argc, char ** argv)
 
     char *word;
     char **massiv;
-    char c;
 
     if (argc == 2)
     {
@@ -200,7 +220,7 @@ int main(int argc, char ** argv)
         {
             printf("%s> %s", COLOR_GREEN, RESET);
         }
-        
+
         kol = 0;
         massiv = malloc(sizeof(char*));
         new_line = 0;
@@ -219,7 +239,24 @@ int main(int argc, char ** argv)
         }
         if (!flag_eof)
         {
-            massiv_out(massiv);
+            //massiv_out(massiv);
+            if (is_cd(massiv))
+                continue;
+
+            pid_t pid = fork();    
+
+            if (pid == -1) //process ended with trouble
+            {
+                perror("System error");
+                exit(1);
+            }
+            else if (pid == 0) // process ended normally
+            {
+                execvp(massiv[0], massiv);
+                perror("Error");
+                exit(2);
+            }
+            wait(0);
         } 
         free_massiv(massiv);
         free(massiv);
