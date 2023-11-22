@@ -218,7 +218,7 @@ int main(int argc, char ** argv)
     {
         if (!file)
         {
-            printf("%s> %s", COLOR_GREEN, RESET);
+            printf("%s> %s", COLOR_GREEN, RESET); 
         }
 
         kol = 0;
