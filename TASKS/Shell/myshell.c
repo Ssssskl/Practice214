@@ -240,23 +240,24 @@ int main(int argc, char ** argv)
         if (!flag_eof && (*massiv != NULL))
         {
             //massiv_out(massiv);
-            if (is_cd(massiv))
-                continue;
-
-            pid_t pid = fork();    
-
-            if (pid == -1) //process ended with trouble
+            if ((is_cd(massiv)) == 0)
             {
-                perror("System error");
-                exit(1);
+                pid_t pid = fork();    
+
+                if (pid == -1) //process ended with trouble
+                {
+                    perror("System error");
+                    exit(1);
+                }
+                else if (pid == 0) // process ended normally
+                {
+                    execvp(massiv[0], massiv);
+                    perror("Error");
+                    exit(2);   
+                }
+                wait(0);
             }
-            else if (pid == 0) // process ended normally
-            {
-                execvp(massiv[0], massiv);
-                perror("Error");
-                exit(2);   
-            }
-            wait(0);
+                
         } 
         free_massiv(massiv);
         free(massiv);
