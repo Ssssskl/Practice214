@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 
-#define COLOR_GREEN "\e[1;32m"
+#define COLOR_VIOLET "\e[1;35m"
 #define RESET "\e[m"
 
 
@@ -171,16 +171,6 @@ void free_massiv(char** massiv)
     }
 }
 
-// void massiv_out(char **massiv)
-// {
-//     char** newmassiv = massiv;
-//     while (*newmassiv != NULL) 
-//     {
-//         printf("%s\n",*newmassiv);
-//         newmassiv++;
-//     }
-// }
-
 int is_cd(char **massiv) 
 {
     if (!strcmp(massiv[0], "cd")) 
@@ -218,7 +208,7 @@ int main(int argc, char ** argv)
     {
         if (!file)
         {
-            printf("%s> %s", COLOR_GREEN, RESET); 
+            printf("%s> %s", COLOR_VIOLET, RESET); 
         }
 
         kol = 0;
@@ -239,7 +229,6 @@ int main(int argc, char ** argv)
         }
         if (!flag_eof && (*massiv != NULL))
         {
-            //massiv_out(massiv);
             if ((is_cd(massiv)) == 0)
             {
                 pid_t pid = fork();    
