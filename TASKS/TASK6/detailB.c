@@ -6,12 +6,14 @@
 #include <sys/sem.h>
 #include <signal.h>
 
+#define n  5
+
 int main(void)
 {
-    key_t key = ftok("connection.txt", 1);
-    int sem = semget(key, 5, 0666);
+    key_t key = ftok("connection.txt", 'a');
+    int sem = semget(key, n, 0666);
     struct sembuf op = {1,1,0};
-    for (int k = 1; semctl(sem, 4, GETVAL, 0) == 0; k++)
+    for (int k = 1; semctl(sem, n - 1, GETVAL, 0) == 0; k++)
     {
         printf("Manufacturing of the detail B begins, this is №%d\n", k);
         sleep(3);

@@ -6,13 +6,14 @@
 #include <sys/sem.h>
 #include <signal.h>
 
+#define n 5
 
 int main(void) 
 {
     key_t key = ftok("connection.txt", 'a');
-    int sem = semget(key, 5, 0666);
+    int sem = semget(key, n, 0666);
     struct sembuf op = {0,0,0};
-    for (int k = 1; semctl(sem, 4, GETVAL, 0) == 0; k++) 
+    for (int k = 1; semctl(sem, n - 1, GETVAL, 0) == 0; k++) 
     {
         op.sem_op = -1;
         for (int j = 0; j < 2; j++) 
